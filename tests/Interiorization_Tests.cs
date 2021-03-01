@@ -21,9 +21,17 @@ namespace tests
         [Fact]
         public void Interiorization_ORs_test2()
         {
-            StringBuilder input = new StringBuilder("DCDqrDuyp");
+            StringBuilder input = new StringBuilder("DpCqr");
             StringBuilder output = Interiorization.Interiorization_ORs(input);
-            Assert.Equal("CDDqrpDDuyp", output.ToString());
+            Assert.Equal("CDpqDpr", output.ToString());
+        }
+
+        [Fact]
+        public void Interiorization_ORs_test3()
+        {
+            StringBuilder input = new StringBuilder("DCabCqr");
+            StringBuilder output = Interiorization.Interiorization_ORs(input);
+            Assert.Equal("CCDaqDbqCDarDbr", output.ToString());
         }
     }
 }

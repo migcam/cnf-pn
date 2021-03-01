@@ -11,26 +11,26 @@ namespace tests
     public class Copy_Tests
     {
         [Fact]
-        public void CopySUbTree_Test1()
+        public void CopySubTree_Test1()
         {
             StringBuilder input = new StringBuilder("IIqrIIpqIpr");
-            StringBuilder output = Copy.CopySubTree(input, 1);
+            StringBuilder output = SubTree.Copy(input, 1);
             Assert.Equal("Iqr", output.ToString());
         }
 
         [Fact]
-        public void CopySUbTree_Test2()
+        public void CopySubTree_Test2()
         {
             StringBuilder input = new StringBuilder("IIqrIIpqIpr");
-            StringBuilder output = Copy.CopySubTree(input, 4);
+            StringBuilder output = SubTree.Copy(input, 4);
             Assert.Equal("IIpqIpr", output.ToString());
         }
 
         [Fact]        
-        public void CopySUbTree_Test3()
+        public void CopySubTree_Test3()
         {
             StringBuilder input = new StringBuilder("IIqrIIpqIpr");
-            StringBuilder output = Copy.CopySubTree(input, 2);
+            StringBuilder output = SubTree.Copy(input, 2);
             Assert.Equal("q", output.ToString());
         }
     }

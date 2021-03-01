@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace dpll_dotnet_5
 {
-    public class Copy
+    public class SubTree
     {
-        public static StringBuilder CopySubTree(StringBuilder input, int idx)
+        public static StringBuilder Copy(StringBuilder input, int idx)
         {
             StringBuilder res = new StringBuilder();
             Stack<bool> mystack = new Stack<bool>();
@@ -50,7 +50,7 @@ namespace dpll_dotnet_5
 
         }
 
-        public static StringBuilder CutSubTree(StringBuilder input, int idx)
+        public static StringBuilder Cut(StringBuilder input, int idx)
         {
             StringBuilder res = new StringBuilder();
             Stack<bool> mystack = new Stack<bool>();

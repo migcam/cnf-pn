@@ -12,6 +12,8 @@ namespace dpll_dotnet_5
         deletes dobles implications
         p<->q == (p->q)^(q->p)
         p<->q == (pv-q)^(-pvq)
+
+        Epq == CIpqIqp
         */
         // public static int RightChild_idx;
         public static void Delete_MaterialConditions(StringBuilder input)
@@ -27,8 +29,8 @@ namespace dpll_dotnet_5
             {
                 if (input[i].Equals('E'))
                 {
-                    LeftChild = Copy.CopySubTree(input,i+1);
-                    RightChild = Copy.CopySubTree(input, i + 1 + LeftChild.Length);
+                    LeftChild = SubTree.Copy(input,i+1);
+                    RightChild = SubTree.Copy(input, i + 1 + LeftChild.Length);
 
                     input[i] = 'C';
                     input.Insert(i + 1 + LeftChild.Length + RightChild.Length, "I" + RightChild + LeftChild);
