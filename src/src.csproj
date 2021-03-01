@@ -6,4 +6,8 @@
     <RootNamespace>src</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\pkg\pkg.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\src.csproj" />
+    <ProjectReference Include="..\pkg\pkg.csproj" />
   </ItemGroup>
 
 </Project>
