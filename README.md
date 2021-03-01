@@ -1,3 +1,3 @@
-# dpll-pn
+# cnf-pn
 
-DPLL implementation with C#
+Conjunctive normal form converter implemented whith c#
