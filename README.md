@@ -1,3 +1,3 @@
 # cnf-pn
 
-Conjunctive normal form converter implemented whith c#
+Conjunctive normal form converter implemented with c#
