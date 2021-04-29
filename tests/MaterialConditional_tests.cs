@@ -14,6 +14,14 @@ namespace tests
             Assert.Equal("DNDNqrDNDNpqDNpr", output.ToString());
         }
 
+        [Fact]
+        public void Delete_All_Implications_Test1()
+        {
+            string input = "IIqrIIpqIpr";
+            string output = MaterialConditional.Delete_All_Implications(input);
+            Assert.Equal("DNDNqrDNDNpqDNpr", output);
+        }
+
 
     }
 }

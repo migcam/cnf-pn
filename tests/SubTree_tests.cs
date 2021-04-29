@@ -10,28 +10,37 @@ namespace tests
 {
     public class Copy_Tests
     {
-        [Fact]
-        public void CopySubTree_Test1()
+
+        private void GenericStringBuilderTest(string strinput , string stroutput , int i)
         {
-            StringBuilder input = new StringBuilder("IIqrIIpqIpr");
-            StringBuilder output = SubTree.Copy(input, 1);
-            Assert.Equal("Iqr", output.ToString());
+            StringBuilder input = new StringBuilder(strinput);
+            StringBuilder output = SubTree.Copy(input, i);
+            Assert.Equal(stroutput, output.ToString());
+        }
+        private void GenericStringTest(string strinput , string stroutput , int i)
+        {
+            // string input = "IIqrIIpqIpr";
+            string res = SubTree.Copy(strinput, i);
+            Assert.Equal(stroutput, res);
         }
 
         [Fact]
-        public void CopySubTree_Test2()
-        {
-            StringBuilder input = new StringBuilder("IIqrIIpqIpr");
-            StringBuilder output = SubTree.Copy(input, 4);
-            Assert.Equal("IIpqIpr", output.ToString());
-        }
+        public void CopySubTree_Test1()  => GenericStringBuilderTest("IIqrIIpqIpr" , "Iqr",1);
 
-        [Fact]        
-        public void CopySubTree_Test3()
-        {
-            StringBuilder input = new StringBuilder("IIqrIIpqIpr");
-            StringBuilder output = SubTree.Copy(input, 2);
-            Assert.Equal("q", output.ToString());
-        }
+        [Fact]
+        public void CopySubTree_Test2() => GenericStringBuilderTest("IIqrIIpqIpr" , "IIpqIpr",4);
+        
+        [Fact]
+        public void CopySubTree_Test3() => GenericStringBuilderTest("IIqrIIpqIpr" , "q",2);
+
+        [Fact]
+        public void CopySubTree_Test4()  => GenericStringBuilderTest("IIqrIIpqIpr" , "Iqr",1);
+
+        [Fact]
+        public void CopySubTree_Test5() => GenericStringTest("IIqrIIpqIpr" , "IIpqIpr",4);
+
+        [Fact]
+        public void CopySubTree_Test6() => GenericStringTest("IIqrIIpqIpr" , "q",2);
+
     }
 }
