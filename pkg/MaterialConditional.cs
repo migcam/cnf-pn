@@ -9,9 +9,8 @@ namespace pkg
     public class MaterialConditional
     {
     
-        //eliminar todas las implicaiones
-        //p->q == -pvq
-        
+        // replace all implications
+        // p->q == -pvq
         public static StringBuilder Delete_All_Implications(StringBuilder input)
         {
             for (int i = input.Length - 2; i > -1; i--)
@@ -20,7 +19,28 @@ namespace pkg
                 {
                     input[i] = 'D';
                     input.Insert(i + 1, 'N');
-                    continue;
+                }
+            }
+
+            return input;
+        }
+
+        public static string Delete_All_Implications(string input)
+        {
+            for (int i = input.Length - 1; i > -1; i--)
+            {
+                if (input[i].Equals('I'))
+                {
+                    string beforei = "";
+                    string afteri = "";
+
+                    if (i > 0)
+                        beforei = input.Substring(0, i);
+                    if (i < input.Length - 1)
+                        afteri = input.Substring(i + 1);
+
+                    input = beforei + 'D' + afteri;
+                    input = input.Insert(i + 1, "N");
                 }
             }
 

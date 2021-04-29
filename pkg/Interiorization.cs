@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 // using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace pkg
 {
@@ -90,16 +89,74 @@ namespace pkg
 
         }
 
-        public class node
+        public static string Interiorization_ORs(string input)
         {
-            public int index { get; set; }
-            public char op { get; set; }
-            public node(char op, int i)
+            Stack<char> ops = new Stack<char>();
+            Stack<char> ds = new Stack<char>();
+            for (int i = input.Length - 1; i > -1; i--)
             {
-                this.op = op;
-                this.index = i;
+                if (input[i].Equals('C'))
+                {
+                    ops.Push(input[i]);
+                    if(ds.Count > 1)
+                    {
+                        ops.Clear();
+                        ds.Clear();
+                    }
+                }
+
+                if (input[i].Equals('D')){
+                    ds.Push(input[i]);
+                }
+
+
+                if (input[i].Equals('D') && checkLast(ops))
+                {
+                    if(input[i + 1].Equals('C') && ops.Count == 1)
+                    {
+                        string q = SubTree.Copy(input, i + 2);
+                        string r = SubTree.Cut(ref input, i + 2 + q.Length);
+                        string p = SubTree.Cut(ref input, i + 2 + q.Length);
+
+                        string beforei = "";
+                        string afteri = "";
+
+                        if(i>0)
+                            beforei = input.Substring(0,i);
+                        if(i<input.Length-2)
+                            afteri = input.Substring(i+2);
+                        
+                        input = beforei + "CD" + afteri;        
+                        input = input.Insert(i + 2 + q.Length, p);
+                        input = input.Insert(i + 2 + q.Length + r.Length, "D" + r + p);
+                    }
+                    else /*if (!input[i + 1].Equals('C'))*/
+                    {
+                        string q = SubTree.Cut(ref input, i + 1);
+                        string r = SubTree.Cut(ref input, i + 2);
+                        string p = SubTree.Cut(ref input, i + 2);
+
+                        string beforei = "";
+                        string afteri = "";
+
+                        if(i>0)
+                            beforei = input.Substring(0,i);
+                        if(i<input.Length-2)
+                            afteri = input.Substring(i+2);
+                        
+                        input = beforei + "CD" + afteri; 
+                        input = input.Insert(i + 2, q + r);
+                        input = input.Insert(i + 2 + q.Length + r.Length, "D" + q + p);
+                    }
+                    ops.Clear();
+                    i = input.Length;
+                }
+
             }
+
+            return input;
         }
+
 
     }
 }
