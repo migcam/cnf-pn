@@ -4,13 +4,13 @@ using pkg;
 
 namespace tests
 {
-    public class MaterialConditional_tests
+    public class Implication_tests
     {
         [Fact]
         public void Delete_All_Implications_Test()
         {
             StringBuilder input = new StringBuilder("IIqrIIpqIpr");
-            StringBuilder output = MaterialConditional.Delete_All_Implications(input);          
+            StringBuilder output = Implication.Delete_All_Implications(input);          
             Assert.Equal("DNDNqrDNDNpqDNpr", output.ToString());
         }
 
@@ -18,7 +18,7 @@ namespace tests
         public void Delete_All_Implications_Test1()
         {
             string input = "IIqrIIpqIpr";
-            string output = MaterialConditional.Delete_All_Implications(input);
+            string output = Implication.Delete_All_Implications(input);
             Assert.Equal("DNDNqrDNDNpqDNpr", output);
         }
 

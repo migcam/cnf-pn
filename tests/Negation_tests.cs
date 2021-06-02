@@ -40,13 +40,13 @@ namespace tests
         //     Assert.Equal("DpNp", output);
         // }
 
-        // [Fact]
-        // public void test7()
-        // {
-        //     string input = "NNNNNNNp";
-        //     string output = Negations.Delete_Negation(input);
-        //     Assert.Equal("Np", output);
-        // }
+        [Fact]
+        public void test7()
+        {
+            string input = "NNNNNNNp";
+            string output = Negations.Delete_Negation(input);
+            Assert.Equal("Np", output);
+        }
 
         // [Fact]
         // public void test8()
