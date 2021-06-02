@@ -5,7 +5,7 @@ using System.Text;
 
 namespace pkg
 {
-    public class Interiorization
+    public class Distribution
     {
 
         /*
@@ -16,7 +16,7 @@ namespace pkg
          *         q   r                              p   q   p   r
          * 
         */
-        // introducir ORs y extraer ANDs
+        // insert ORs y extrat ANDs
         // pv(q^r) == (p v q)^(p v r)
         // DpCqr == CDpqDpr
         // DCqrp == CDqpDrp
@@ -26,7 +26,7 @@ namespace pkg
         // ((avq)^(bvq))^((avr)^(bvr))
 
         
-        public static StringBuilder Interiorization_ORs(StringBuilder input)
+        public static StringBuilder Distribution_ORs(StringBuilder input)
         {
             Stack<char> ops = new Stack<char>();
             Stack<char> ds = new Stack<char>();
@@ -89,7 +89,7 @@ namespace pkg
 
         }
 
-        public static string Interiorization_ORs(string input)
+        public static string Distribution_ORs(string input)
         {
             Stack<char> ops = new Stack<char>();
             Stack<char> ds = new Stack<char>();

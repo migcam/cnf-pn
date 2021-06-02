@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace pkg
 {
-    public class MaterialConditional
+    public class Implication
     {
     
         // replace all implications

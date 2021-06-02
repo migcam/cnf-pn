@@ -9,7 +9,7 @@ namespace pkg
     public class Biconditional
     {
         /*
-        deletes material condition using De'Morgan's laws
+        deletes biconditionals using De'Morgan's laws
         p<->q == (p->q)^(q->p)
         p<->q == (pv-q)^(-pvq)
 

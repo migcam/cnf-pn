@@ -1,30 +1,30 @@
 ﻿using System;
 using System.Text;
-using Xunit;
 using pkg;
+using BenchmarkDotNet.Attributes;
 
-namespace tests
+namespace benchmarks
 {
-    public class Negation_tests
+    [MemoryDiagnoser]
+    public class NegationBenchmarks
     {
 
-        private void GenericStringBuilderTest(string strinput , string stroutput)
+        private void GenericStringBuilder(string strinput , string stroutput)
         {
             StringBuilder input = new StringBuilder(strinput);
             StringBuilder output = Negations.Delete_Negation(input);
-            Assert.Equal(stroutput, output.ToString());
         }
 
-        [Fact]
-        public void test1() => GenericStringBuilderTest("DNDNqrDNDNpqDNpr","DCqNrDCpNqDNpr");
-        [Fact]
-        public void test2() => GenericStringBuilderTest("NCNpp","DpNp");
-        [Fact]
-        public void test3() => GenericStringBuilderTest("NNNNNNNp","Np");
-        [Fact]
-        public void test4() => GenericStringBuilderTest("DNDNpqDpNp","DCpNqDpNp");
+        [Benchmark]
+        public void NegationStringBuilder1() => GenericStringBuilder("DNDNqrDNDNpqDNpr","DCqNrDCpNqDNpr");
+        [Benchmark]
+        public void NegationStringBuilder2() => GenericStringBuilder("NCNpp","DpNp");
+        [Benchmark]
+        public void NegationStringBuilder3() => GenericStringBuilder("NNNNNNNp","Np");
+        [Benchmark]
+        public void NegationStringBuilder4() => GenericStringBuilder("DNDNpqDpNp","DCpNqDpNp");
 
-        // [Fact]
+        // [Benchmark]
         // public void test5()
         // {
         //     string input = "DNDNqrDNDNpqDNpr";
@@ -32,7 +32,7 @@ namespace tests
         //     Assert.Equal("DCqNrDCpNqDNpr", output);
         // }
 
-        // [Fact]
+        // [Benchmark]
         // public void test6()
         // {
         //     string input = "NCNpp";
@@ -40,15 +40,13 @@ namespace tests
         //     Assert.Equal("DpNp", output);
         // }
 
-        [Fact]
-        public void test7()
+        [Benchmark]
+        public void Negation_3_String()
         {
-            string input = "NNNNNNNp";
-            string output = Negations.Delete_Negation(input);
-            Assert.Equal("Np", output);
+            string output = Negations.Delete_Negation("NNNNNNNp");
         }
 
-        // [Fact]
+        // [Benchmark]
         // public void test8()
         // {
         //     string input =  "DNDNpqDpNp";

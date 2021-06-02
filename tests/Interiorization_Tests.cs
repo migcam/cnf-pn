@@ -8,35 +8,35 @@ using pkg;
 
 namespace tests
 {
-    public class Interiorization_Tests
+    public class Distribution_Tests
     {
 
-        private void GenericStringBuilderInteriorizationOR(string strinput , string stroutput)
+        private void GenericStringBuilderDistributionOR(string strinput , string stroutput)
         {
             StringBuilder input = new StringBuilder(strinput);
-            StringBuilder output = Interiorization.Interiorization_ORs(input);
+            StringBuilder output = Distribution.Distribution_ORs(input);
             Assert.Equal(stroutput, output.ToString());
         }
 
-        private void GenericStringInteriorizationOR(string input , string stroutput)
+        private void GenericStringDistributionOR(string input , string stroutput)
         {
-            string output = Interiorization.Interiorization_ORs(input);
+            string output = Distribution.Distribution_ORs(input);
             Assert.Equal(stroutput, output);
         }
 
         [Fact]
-        public void Interiorization_ORs_test1() => GenericStringBuilderInteriorizationOR("DCqrp" , "CDqpDrp");
+        public void Distribution_ORs_test1() => GenericStringBuilderDistributionOR("DCqrp" , "CDqpDrp");
         [Fact]
-        public void Interiorization_ORs_test2() => GenericStringBuilderInteriorizationOR("DpCqr" , "CDpqDpr");
+        public void Distribution_ORs_test2() => GenericStringBuilderDistributionOR("DpCqr" , "CDpqDpr");
         [Fact]
-        public void Interiorization_ORs_test3() => GenericStringBuilderInteriorizationOR("DCabCqr" , "CCDaqDbqCDarDbr");
+        public void Distribution_ORs_test3() => GenericStringBuilderDistributionOR("DCabCqr" , "CCDaqDbqCDarDbr");
 
         [Fact]
-        public void Interiorization_ORs_test4() => GenericStringInteriorizationOR("DCqrp", "CDqpDrp");
+        public void Distribution_ORs_test4() => GenericStringDistributionOR("DCqrp", "CDqpDrp");
         [Fact]
-        public void Interiorization_ORs_test5() => GenericStringInteriorizationOR("DpCqr", "CDpqDpr");
+        public void Distribution_ORs_test5() => GenericStringDistributionOR("DpCqr", "CDpqDpr");
         [Fact]
-        public void Interiorization_ORs_test6() => GenericStringInteriorizationOR("DCabCqr", "CCDaqDbqCDarDbr");
+        public void Distribution_ORs_test6() => GenericStringDistributionOR("DCabCqr", "CCDaqDbqCDarDbr");
 
     }
 }

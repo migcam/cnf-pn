@@ -35,19 +35,19 @@ namespace dpll_dotnet_5
             Biconditional.Delete_MaterialConditions(input);
 
             //eliminar todas las implicaiones
-            input = MaterialConditional.Delete_All_Implications(input);
+            input = Implication.Delete_All_Implications(input);
 
             //eliminar doble negaciones
             //interiorizar negaciones          
             //-(pvq) == -p^-q
             //-(p^q) == -pv-q
 
-            
-
             //input = Delete_Negation(input);
+            
 
             //introducir ORs y extraer ANDs
             //pv(q^r) == (pvq)^(pvr)
+
 
             return false;
         }
