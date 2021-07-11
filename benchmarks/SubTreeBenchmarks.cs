@@ -48,11 +48,5 @@ namespace benchmarks
         [Benchmark]
         public void CopySubTree_4_String()  => GenericString("IIqrIIpqIpr" , "Iqr",1);
 
-        // [Benchmark]
-        // public void CopySubTree_2_String() => GenericString("IIqrIIpqIpr" , "IIpqIpr",4);
-
-        // [Benchmark]
-        // public void CopySubTree_3_String() => GenericString("IIqrIIpqIpr" , "q",2);
-
     }
 }

@@ -14,6 +14,11 @@ namespace tests
             StringBuilder output = Negations.Delete_Negation(input);
             Assert.Equal(stroutput, output.ToString());
         }
+        private void GenericStringTest(string strinput , string stroutput)
+        {
+            string output = Negations.Delete_Negation(strinput);
+            Assert.Equal(stroutput, output);
+        }
 
         [Fact]
         public void test1() => GenericStringBuilderTest("DNDNqrDNDNpqDNpr","DCqNrDCpNqDNpr");
@@ -24,37 +29,14 @@ namespace tests
         [Fact]
         public void test4() => GenericStringBuilderTest("DNDNpqDpNp","DCpNqDpNp");
 
-        // [Fact]
-        // public void test5()
-        // {
-        //     string input = "DNDNqrDNDNpqDNpr";
-        //     string output = Negations.Delete_Negation(input);
-        //     Assert.Equal("DCqNrDCpNqDNpr", output);
-        // }
-
-        // [Fact]
-        // public void test6()
-        // {
-        //     string input = "NCNpp";
-        //     string output = Negations.Delete_Negation(input);
-        //     Assert.Equal("DpNp", output);
-        // }
-
         [Fact]
-        public void test7()
-        {
-            string input = "NNNNNNNp";
-            string output = Negations.Delete_Negation(input);
-            Assert.Equal("Np", output);
-        }
-
-        // [Fact]
-        // public void test8()
-        // {
-        //     string input =  "DNDNpqDpNp";
-        //     string output = Negations.Delete_Negation(input);
-        //     Assert.Equal("DCpNqDpNp", output);
-        // }
+        public void test5() => GenericStringBuilderTest("DNDNqrDNDNpqDNpr","DCqNrDCpNqDNpr");
+        [Fact]
+        public void test6() => GenericStringBuilderTest("NCNpp","DpNp");
+        [Fact]
+        public void test7() => GenericStringBuilderTest("NNNNNNNp","Np");
+        [Fact]
+        public void test8() => GenericStringBuilderTest("DNDNpqDpNp","DCpNqDpNp");
 
     }
 }

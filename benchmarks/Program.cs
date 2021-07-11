@@ -7,11 +7,8 @@ namespace benchmarks
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<BiconditionalBenchmarks>();
-            BenchmarkRunner.Run<DistributionBenchmarks>();
-            BenchmarkRunner.Run<ImplicationBenchmarks>();
-            BenchmarkRunner.Run<NegationBenchmarks>();
-            BenchmarkRunner.Run<SubTreeBenchmarks>();
+            BenchmarkRunner.Run<CNFBenchmarks>();
+
         }
     }
 }
