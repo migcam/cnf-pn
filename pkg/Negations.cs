@@ -22,7 +22,7 @@ namespace pkg
             input = beforei + character + afteri;
         }
 
-        public static StringBuilder Delete_Negation(StringBuilder input)
+        public static void Delete_Negation(StringBuilder input)
         {
             // deletes double negations (!!)
             for (int i = 0; i < input.Length - 1;)
@@ -136,7 +136,7 @@ namespace pkg
                 }
             }
 
-            return input;
+            // return input;
         }
 
         public static string Delete_Negation(string input)

@@ -26,7 +26,7 @@ namespace pkg
         // ((avq)^(bvq))^((avr)^(bvr))
 
         
-        public static StringBuilder Distribution_ORs(StringBuilder input)
+        public static void Distribution_ORs(StringBuilder input)
         {
             Stack<char> ops = new Stack<char>();
             Stack<char> ds = new Stack<char>();
@@ -77,7 +77,7 @@ namespace pkg
 
             }
 
-            return input;
+            // return input;
         }
         
         private static bool checkLast(Stack<char> ops)

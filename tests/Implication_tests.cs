@@ -10,8 +10,8 @@ namespace tests
         public void Delete_All_Implications_Test()
         {
             StringBuilder input = new StringBuilder("IIqrIIpqIpr");
-            StringBuilder output = Implication.Delete_All_Implications(input);          
-            Assert.Equal("DNDNqrDNDNpqDNpr", output.ToString());
+            Implication.Delete_All_Implications(input);          
+            Assert.Equal("DNDNqrDNDNpqDNpr", input.ToString());
         }
 
         [Fact]

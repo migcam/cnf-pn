@@ -11,7 +11,7 @@ namespace pkg
     
         // replace all implications
         // p->q == -pvq
-        public static StringBuilder Delete_All_Implications(StringBuilder input)
+        public static void Delete_All_Implications(StringBuilder input)
         {
             for (int i = input.Length - 2; i > -1; i--)
             {
@@ -21,8 +21,6 @@ namespace pkg
                     input.Insert(i + 1, 'N');
                 }
             }
-
-            return input;
         }
 
         public static string Delete_All_Implications(string input)

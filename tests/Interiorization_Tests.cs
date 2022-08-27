@@ -14,8 +14,8 @@ namespace tests
         private void GenericStringBuilderDistributionOR(string strinput , string stroutput)
         {
             StringBuilder input = new StringBuilder(strinput);
-            StringBuilder output = Distribution.Distribution_ORs(input);
-            Assert.Equal(stroutput, output.ToString());
+            Distribution.Distribution_ORs(input);
+            Assert.Equal(stroutput, input.ToString());
         }
 
         private void GenericStringDistributionOR(string input , string stroutput)

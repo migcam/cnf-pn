@@ -11,8 +11,8 @@ namespace tests
         private void GenericStringBuilderTest(string strinput , string stroutput)
         {
             StringBuilder input = new StringBuilder(strinput);
-            StringBuilder output = Negations.Delete_Negation(input);
-            Assert.Equal(stroutput, output.ToString());
+            Negations.Delete_Negation(input);
+            Assert.Equal(stroutput, input.ToString());
         }
         private void GenericStringTest(string strinput , string stroutput)
         {
