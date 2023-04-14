@@ -11,9 +11,8 @@ namespace benchmarks
     [MemoryDiagnoser]
     public class CNFBenchmarks
     {
-        private void GenericStringBuilder(string strinput)
+        private void GenericStringBuilder(StringBuilder input) 
         {
-            StringBuilder input = new StringBuilder(strinput);
             CNF.Convert(input);
         }
 
@@ -21,37 +20,37 @@ namespace benchmarks
 
 
         [Benchmark]
-        public void ConvertStringBuilder() => GenericStringBuilder("IIpqDpNp");
+        public void ConvertStringBuilder() => GenericStringBuilder(new StringBuilder("IIpqDpNp"));
         [Benchmark]
         public void ConvertString() => GenericString("IIpqDpNp");
 
         [Benchmark]
-        public void ConvertStringBuilder1() => GenericStringBuilder("NCNpp");
+        public void ConvertStringBuilder1() => GenericStringBuilder(new StringBuilder("NCNpp"));
         [Benchmark]
         public void ConvertString1() => GenericString("NCNpp");
 
         [Benchmark]
-        public void ConvertStringBuilder2() => GenericStringBuilder("Iaz");
+        public void ConvertStringBuilder2() => GenericStringBuilder(new StringBuilder("Iaz"));
         [Benchmark]
         public void ConvertString2() => GenericString("Iaz");
 
         [Benchmark]
-        public void ConvertStringBuilder3() => GenericStringBuilder("NNNNNNNp");
+        public void ConvertStringBuilder3() => GenericStringBuilder(new StringBuilder("NNNNNNNp"));
         [Benchmark]
         public void ConvertString3() => GenericString("NNNNNNNp");
 
         [Benchmark]
-        public void ConvertStringBuilder4() => GenericStringBuilder("IIqrIIpqIpr");
+        public void ConvertStringBuilder4() => GenericStringBuilder(new StringBuilder("IIqrIIpqIpr"));
         [Benchmark]
         public void ConvertString4() => GenericString("IIqrIIpqIpr");
 
         [Benchmark]
-        public void ConvertStringBuilder5() => GenericStringBuilder("Ipp");
+        public void ConvertStringBuilder5() => GenericStringBuilder(new StringBuilder("Ipp"));
         [Benchmark]
         public void ConvertString5() => GenericString("Ipp");
 
         [Benchmark]
-        public void ConvertStringBuilder6() => GenericStringBuilder("Ezz");
+        public void ConvertStringBuilder6() => GenericStringBuilder(new StringBuilder("Ezz"));
         [Benchmark]
         public void ConvertString6() => GenericString("Ezz");
 
