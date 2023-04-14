@@ -7,7 +7,7 @@ namespace benchmarks
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<CNFBenchmarks>();
+            BenchmarkRunner.Run<SubTreeBenchmarks>();
 
         }
     }

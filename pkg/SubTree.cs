@@ -56,6 +56,12 @@ namespace pkg
             //right procesado -> t
             for (int i = idx; i < input.Length; i++)
             {
+                //es un operador
+                if(input[i] <= 90 && !input[i].Equals('N'))
+                {
+                    mystack.Push(false);
+                }
+
                 if (input[i] > 90)
                 {
                     if (mystack.Count == 0)
@@ -66,19 +72,14 @@ namespace pkg
                     {
                         mystack.Pop();
                         mystack.Push(true);
+                        continue;
                     }
-                    else
-                        while (mystack.Count > 0 && mystack.Peek() == true)
-                            mystack.Pop();
+                    
+                    while (mystack.Count > 0 && mystack.Peek() == true)
+                        mystack.Pop();
 
                     if (mystack.Count == 0)
                         return input.Substring(idx,i-idx+1);
-                }
-                else
-                {
-                    //es un operador
-                    if (!input[i].Equals('N'))
-                        mystack.Push(false);
                 }
             }
 

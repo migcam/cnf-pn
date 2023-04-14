@@ -12,30 +12,30 @@ namespace benchmarks
     public class DistributionBenchmarks
     {
 
-        private void GenericStringBuilderDistributionOR(string strinput , string stroutput)
+        private void GenericStringBuilderDistributionOR(StringBuilder input)
         {
-            StringBuilder input = new StringBuilder(strinput);
             Distribution.Distribution_ORs(input);
         }
 
-        private void GenericStringDistributionOR(string input , string stroutput)
+        private void GenericStringDistributionOR(string input)
         {
             string output = Distribution.Distribution_ORs(input);
         }
 
         [Benchmark]
-        public void Distribution_ORs_1_StringBuilder() => GenericStringBuilderDistributionOR("DCqrp" , "CDqpDrp");
+        public void Distribution_ORs_1_StringBuilder() => GenericStringBuilderDistributionOR(new StringBuilder("DCqrp"));
         [Benchmark]
-        public void Distribution_ORs_2_StringBuilder() => GenericStringBuilderDistributionOR("DpCqr" , "CDpqDpr");
-        [Benchmark]
-        public void Distribution_ORs_3_StringBuilder() => GenericStringBuilderDistributionOR("DCabCqr" , "CCDaqDbqCDarDbr");
+        public void Distribution_ORs_1_String() => GenericStringDistributionOR("DCqrp");
 
         [Benchmark]
-        public void Distribution_ORs_1_String() => GenericStringDistributionOR("DCqrp", "CDqpDrp");
+        public void Distribution_ORs_2_StringBuilder() => GenericStringBuilderDistributionOR(new StringBuilder("DpCqr"));
         [Benchmark]
-        public void Distribution_ORs_2_String() => GenericStringDistributionOR("DpCqr", "CDpqDpr");
+        public void Distribution_ORs_2_String() => GenericStringDistributionOR("DpCqr");
+
         [Benchmark]
-        public void Distribution_ORs_3_String() => GenericStringDistributionOR("DCabCqr", "CCDaqDbqCDarDbr");
+        public void Distribution_ORs_3_StringBuilder() => GenericStringBuilderDistributionOR(new StringBuilder("DCabCqr"));
+        [Benchmark]
+        public void Distribution_ORs_3_String() => GenericStringDistributionOR("DCabCqr");
 
     }
 }

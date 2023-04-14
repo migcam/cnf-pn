@@ -9,20 +9,19 @@ namespace benchmarks
     public class NegationBenchmarks
     {
 
-        private void GenericStringBuilder(string strinput , string stroutput)
+        private void GenericStringBuilder(StringBuilder input)
         {
-            StringBuilder input = new StringBuilder(strinput);
             Negations.Delete_Negation(input);
         }
 
         [Benchmark]
-        public void NegationStringBuilder1() => GenericStringBuilder("DNDNqrDNDNpqDNpr","DCqNrDCpNqDNpr");
+        public void NegationStringBuilder1() => GenericStringBuilder(new StringBuilder("DNDNqrDNDNpqDNpr"));
         [Benchmark]
-        public void NegationStringBuilder2() => GenericStringBuilder("NCNpp","DpNp");
+        public void NegationStringBuilder2() => GenericStringBuilder(new StringBuilder("NCNpp"));
         [Benchmark]
-        public void NegationStringBuilder3() => GenericStringBuilder("NNNNNNNp","Np");
+        public void NegationStringBuilder3() => GenericStringBuilder(new StringBuilder("NNNNNNNp"));
         [Benchmark]
-        public void NegationStringBuilder4() => GenericStringBuilder("DNDNpqDpNp","DCpNqDpNp");
+        public void NegationStringBuilder4() => GenericStringBuilder(new StringBuilder("DNDNpqDpNp"));
 
         // [Benchmark]
         // public void test5()

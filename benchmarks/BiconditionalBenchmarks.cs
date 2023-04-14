@@ -11,28 +11,25 @@ namespace benchmarks
     [MemoryDiagnoser]
     public class BiconditionalBenchmarks
     {
-        private void GenericStringBuilder(string strinput , string stroutput)
+        private void GenericStringBuilder(StringBuilder strinput)
         {
-            StringBuilder input = new StringBuilder(strinput);
-            Biconditional.Delete_MaterialConditions(input);
+            Biconditional.Delete_MaterialConditions(strinput);
         }
 
-        private void GenericString(string input , string stroutput)
+        private void GenericString(string input)
         {
             input = Biconditional.Delete_MaterialConditions(input);
         }
 
         [Benchmark]
-        public void DeleteMaterialConditions1StringBuilder() => GenericStringBuilder("Epq", "CIpqIqp");
+        public void DeleteMaterialConditions1StringBuilder() => GenericStringBuilder(new StringBuilder("Epq"));
+        [Benchmark]
+        public void DeleteMaterialConditions1String() => GenericString("Epq");
 
         [Benchmark]
-        public void DeleteMaterialConditions2StringBuilder() => GenericStringBuilder("ECpqDab", "CICpqDabIDabCpq");
-
+        public void DeleteMaterialConditions2StringBuilder() => GenericStringBuilder(new StringBuilder("ECpqDab"));
         [Benchmark]
-        public void DeleteMaterialConditions1String() => GenericString("Epq", "CIpqIqp");
-
-        [Benchmark]
-        public void DeleteMaterialConditions2String() => GenericString("ECpqDab", "CICpqDabIDabCpq");
+        public void DeleteMaterialConditions2String() => GenericString("ECpqDab");
 
     }
 }

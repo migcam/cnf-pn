@@ -10,16 +10,13 @@ namespace benchmarks
         [Benchmark]
         public void Delete_All_Implications_Test()
         {
-            StringBuilder input = new StringBuilder("IIqrIIpqIpr");
-            Implication.Delete_All_Implications(input);
+            Implication.Delete_All_Implications(new StringBuilder("IIqrIIpqIpr"));
         }
 
         [Benchmark]
         public void Delete_All_Implications_Test1()
         {
-            string input = "IIqrIIpqIpr";
-            string output = Implication.Delete_All_Implications(input);
-            
+            string output = Implication.Delete_All_Implications("IIqrIIpqIpr");  
         }
 
 
