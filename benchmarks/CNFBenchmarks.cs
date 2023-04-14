@@ -13,10 +13,10 @@ namespace benchmarks
     {
         private void GenericStringBuilder(StringBuilder input) 
         {
-            CNF.Convert(input);
+            CNF.ConvertFromStringBuilder(input);
         }
 
-        private void GenericString(string input) => input = CNF.Convert(input);
+        private void GenericString(string input) => input = CNF.ConvertFromString(input);
 
 
         [Benchmark]

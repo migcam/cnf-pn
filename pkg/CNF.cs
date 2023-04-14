@@ -4,7 +4,7 @@ namespace pkg
 {
     public class CNF
     {
-        public static string Convert(string expression)
+        public static string ConvertFromString(string expression)
         {
             expression = Biconditional.Delete_MaterialConditions(expression);
             expression = Implication.Delete_All_Implications(expression);
@@ -12,13 +12,13 @@ namespace pkg
             expression = Distribution.Distribution_ORs(expression);
             return expression;
         }
-        public static string Convert(StringBuilder expression)
+        public static void ConvertFromStringBuilder(StringBuilder expression)
         {
             Biconditional.Delete_MaterialConditions(expression);
             Implication.Delete_All_Implications(expression);
             Negations.Delete_Negation(expression);
             Distribution.Distribution_ORs(expression);
-            return expression.ToString();
+            // return expression.ToString();
         }
 
     }

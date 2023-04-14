@@ -12,7 +12,7 @@ namespace dpll_dotnet_5
 
             for (int i = 0; i < n; i++)
             {
-                res[i] = CNF.Convert(Console.ReadLine());
+                res[i] = CNF.ConvertFromString(Console.ReadLine());
             }
 
             Console.WriteLine("====================");

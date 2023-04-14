@@ -51,20 +51,15 @@ namespace pkg
 
         public static string Copy(string input, int idx)
         {
-            string res = "";
             Stack<bool> mystack = new Stack<bool>();
-
             //left procesado -> f
             //right procesado -> t
             for (int i = idx; i < input.Length; i++)
             {
-
-                res += input[i];
-
                 if (input[i] > 90)
                 {
                     if (mystack.Count == 0)
-                        return res;
+                        return input.Substring(idx,i-idx+1);
 
                     //es una variable
                     if (mystack.Peek() == false)
@@ -77,7 +72,7 @@ namespace pkg
                             mystack.Pop();
 
                     if (mystack.Count == 0)
-                        return res;
+                        return input.Substring(idx,i-idx+1);
                 }
                 else
                 {
@@ -87,7 +82,7 @@ namespace pkg
                 }
             }
 
-            return res;
+            return input.Substring(idx,input.Length - idx);
 
         }
         // public static Span<char> Copy(Span<char> input, int idx)
