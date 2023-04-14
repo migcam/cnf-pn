@@ -21,7 +21,7 @@ namespace pkg
         // DpCqr == CDpqDpr
         // DCqrp == CDqpDrp
 
-        // ( a^b)v(q^r)                ==  DCabCqr 
+        // (a^b)v(q^r)                ==  DCabCqr 
         // ( (a^b) v q )^((a^b) v r)    ==  
         // ((avq)^(bvq))^((avr)^(bvr))
 

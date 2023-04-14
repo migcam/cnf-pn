@@ -25,13 +25,14 @@ namespace pkg
 
         public static string Delete_All_Implications(string input)
         {
+            string beforei = "";
+            string afteri = "";
             for (int i = input.Length - 1; i > -1; i--)
             {
                 if (input[i].Equals('I'))
                 {
-                    string beforei = "";
-                    string afteri = "";
-
+                    beforei = "";
+                    afteri = "";
                     if (i > 0)
                         beforei = input.Substring(0, i);
                     if (i < input.Length - 1)
