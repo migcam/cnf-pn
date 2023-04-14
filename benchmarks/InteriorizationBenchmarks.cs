@@ -15,7 +15,7 @@ namespace benchmarks
         private void GenericStringBuilderDistributionOR(string strinput , string stroutput)
         {
             StringBuilder input = new StringBuilder(strinput);
-            StringBuilder output = Distribution.Distribution_ORs(input);
+            Distribution.Distribution_ORs(input);
         }
 
         private void GenericStringDistributionOR(string input , string stroutput)

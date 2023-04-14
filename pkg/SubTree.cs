@@ -59,7 +59,7 @@ namespace pkg
             for (int i = idx; i < input.Length; i++)
             {
 
-                res = res + input[i];
+                res += input[i];
 
                 if (input[i] > 90)
                 {
@@ -90,6 +90,47 @@ namespace pkg
             return res;
 
         }
+        // public static Span<char> Copy(Span<char> input, int idx)
+        // {
+        //     Span<char> res = new Span<char>();
+        //     Stack<bool> mystack = new Stack<bool>();
+
+        //     //left procesado -> f
+        //     //right procesado -> t
+        //     for (int i = idx; i < input.Length; i++)
+        //     {
+
+        //         res += input[i];
+
+        //         if (input[i] > 90)
+        //         {
+        //             if (mystack.Count == 0)
+        //                 return res;
+
+        //             //es una variable
+        //             if (mystack.Peek() == false)
+        //             {
+        //                 mystack.Pop();
+        //                 mystack.Push(true);
+        //             }
+        //             else
+        //                 while (mystack.Count > 0 && mystack.Peek() == true)
+        //                     mystack.Pop();
+
+        //             if (mystack.Count == 0)
+        //                 return res;
+        //         }
+        //         else
+        //         {
+        //             //es un operador
+        //             if (!input[i].Equals('N'))
+        //                 mystack.Push(false);
+        //         }
+        //     }
+
+        //     return res;
+
+        // }
 
         public static StringBuilder Cut(StringBuilder input, int idx)
         {
@@ -183,6 +224,52 @@ namespace pkg
             return res;
 
         }
+
+        // public static Span<char> Cut(Span<char> input, int idx)
+        // {
+        //     Span<char> res = new Span<char>();
+        //     Stack<bool> mystack = new Stack<bool>();
+      
+        //     //left procesado -> f
+        //     //right procesado -> t
+        //     for (int i = idx; i < input.Length; i++)
+        //     {
+        //         res += input[i];
+                
+        //         //if (input.Length == 0)
+        //         //    break;
+        //         if (input[i] > 90)
+        //         {
+        //             input = input.Remove(i--, 1);
+
+        //             if (mystack.Count == 0)
+        //                 return res;
+                    
+        //             //es una variable
+        //             if (mystack.Peek() == false)
+        //             {
+        //                 mystack.Pop();
+        //                 mystack.Push(true);
+        //             }
+        //             else
+        //                 while (mystack.Count > 0 && mystack.Peek() == true)
+        //                     mystack.Pop();
+
+        //             if (mystack.Count == 0)
+        //                 return res;
+        //         }
+        //         else
+        //         {
+        //             //es un operador
+        //             if (!input[i].Equals('N'))
+        //                 mystack.Push(false);
+        //             input = input.Remove(i--, 1);
+        //         }
+        //     }
+
+        //     return res;
+
+        // }
 
 
     }

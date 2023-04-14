@@ -12,7 +12,7 @@ namespace benchmarks
         private void GenericStringBuilder(string strinput , string stroutput)
         {
             StringBuilder input = new StringBuilder(strinput);
-            StringBuilder output = Negations.Delete_Negation(input);
+            Negations.Delete_Negation(input);
         }
 
         [Benchmark]
