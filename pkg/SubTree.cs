@@ -7,127 +7,6 @@ namespace pkg
 {
     public class SubTree
     {
-        public static StringBuilder Copy(StringBuilder input, int idx)
-        {
-            StringBuilder res = new StringBuilder();
-            Stack<bool> mystack = new Stack<bool>();
-
-            //left procesado -> f
-            //right procesado -> t
-            for (int i = idx; i < input.Length; i++)
-            {
-
-                res.Append(input[i]);
-
-                if (input[i] > 90)
-                {
-                    if (mystack.Count == 0)
-                        return res;
-
-                    //es una variable
-                    if (mystack.Peek() == false)
-                    {
-                        mystack.Pop();
-                        mystack.Push(true);
-                    }
-                    else
-                        while (mystack.Count > 0 && mystack.Peek() == true)
-                            mystack.Pop();
-
-                    if (mystack.Count == 0)
-                        return res;
-                }
-                else
-                {
-                    //es un operador
-                    if (!input[i].Equals('N'))
-                        mystack.Push(false);
-                }
-            }
-
-            return res;
-
-        }
-
-        public static string Copy(string input, int idx)
-        {
-            Stack<bool> mystack = new Stack<bool>();
-            //left procesado -> f
-            //right procesado -> t
-            for (int i = idx; i < input.Length; i++)
-            {
-                //es un operador
-                if(input[i] <= 90 && !input[i].Equals('N'))
-                {
-                    mystack.Push(false);
-                }
-
-                if (input[i] > 90)
-                {
-                    if (mystack.Count == 0)
-                        return input.Substring(idx,i-idx+1);
-
-                    //es una variable
-                    if (mystack.Peek() == false)
-                    {
-                        mystack.Pop();
-                        mystack.Push(true);
-                        continue;
-                    }
-                    
-                    while (mystack.Count > 0 && mystack.Peek() == true)
-                        mystack.Pop();
-
-                    if (mystack.Count == 0)
-                        return input.Substring(idx,i-idx+1);
-                }
-            }
-
-            return input.Substring(idx,input.Length - idx);
-
-        }
-        // public static Span<char> Copy(Span<char> input, int idx)
-        // {
-        //     Span<char> res = new Span<char>();
-        //     Stack<bool> mystack = new Stack<bool>();
-
-        //     //left procesado -> f
-        //     //right procesado -> t
-        //     for (int i = idx; i < input.Length; i++)
-        //     {
-
-        //         res += input[i];
-
-        //         if (input[i] > 90)
-        //         {
-        //             if (mystack.Count == 0)
-        //                 return res;
-
-        //             //es una variable
-        //             if (mystack.Peek() == false)
-        //             {
-        //                 mystack.Pop();
-        //                 mystack.Push(true);
-        //             }
-        //             else
-        //                 while (mystack.Count > 0 && mystack.Peek() == true)
-        //                     mystack.Pop();
-
-        //             if (mystack.Count == 0)
-        //                 return res;
-        //         }
-        //         else
-        //         {
-        //             //es un operador
-        //             if (!input[i].Equals('N'))
-        //                 mystack.Push(false);
-        //         }
-        //     }
-
-        //     return res;
-
-        // }
-
         public static StringBuilder Cut(StringBuilder input, int idx)
         {
             StringBuilder res = new StringBuilder();
@@ -221,51 +100,113 @@ namespace pkg
 
         }
 
-        // public static Span<char> Cut(Span<char> input, int idx)
+        public static StringBuilder Copy(StringBuilder input, int idx)
+        {
+            int length = GetSubTreeLength(input,idx);
+            return new StringBuilder(input.ToString(idx,length));
+        }
+
+        public static string Copy(string input, int idx)
+        {
+            int length = GetSubTreeLength(input,idx);
+            return input.Substring(idx,length);
+        }
+
+        // public static StringBuilder Cut(StringBuilder input, int idx)
         // {
-        //     Span<char> res = new Span<char>();
-        //     Stack<bool> mystack = new Stack<bool>();
-      
-        //     //left procesado -> f
-        //     //right procesado -> t
-        //     for (int i = idx; i < input.Length; i++)
-        //     {
-        //         res += input[i];
-                
-        //         //if (input.Length == 0)
-        //         //    break;
-        //         if (input[i] > 90)
-        //         {
-        //             input = input.Remove(i--, 1);
+        //     int length = GetSubTreeLength(input,idx);
+        
+        //     input = new StringBuilder(input.ToString().Remove(idx,length));
 
-        //             if (mystack.Count == 0)
-        //                 return res;
-                    
-        //             //es una variable
-        //             if (mystack.Peek() == false)
-        //             {
-        //                 mystack.Pop();
-        //                 mystack.Push(true);
-        //             }
-        //             else
-        //                 while (mystack.Count > 0 && mystack.Peek() == true)
-        //                     mystack.Pop();
+        //     string res = input.ToString(idx,length);
+        //     return new StringBuilder(res);
+        // }
 
-        //             if (mystack.Count == 0)
-        //                 return res;
-        //         }
-        //         else
-        //         {
-        //             //es un operador
-        //             if (!input[i].Equals('N'))
-        //                 mystack.Push(false);
-        //             input = input.Remove(i--, 1);
-        //         }
-        //     }
+        // public static string Cut(ref string input, int idx)
+        // {
+        //     int length = GetSubTreeLength(input,idx);
+        //     string res = input.Substring(idx,length);
+
+        //     input.Remove(idx,length+1);
 
         //     return res;
-
         // }
+
+        public static int GetSubTreeLength(string input, int startIndex)
+        {
+            Stack<bool> mystack = new Stack<bool>();
+            //left procesado -> f
+            //right procesado -> t
+            for (int i = startIndex; i < input.Length; i++)
+            {
+                //es un operador
+                if(input[i] <= 90 && !input[i].Equals('N'))
+                {
+                    mystack.Push(false);
+                }
+
+                if (input[i] > 90)
+                {
+                    if (mystack.Count == 0)
+                        return i-startIndex+1;
+
+                    //es una variable
+                    if (mystack.Peek() == false)
+                    {
+                        mystack.Pop();
+                        mystack.Push(true);
+                        continue;
+                    }
+                    
+                    while (mystack.Count > 0 && mystack.Peek() == true)
+                        mystack.Pop();
+
+                    if (mystack.Count == 0)
+                        return i-startIndex+1;
+                }
+            }
+
+            return input.Length - startIndex;
+
+        }
+
+        public static int GetSubTreeLength(StringBuilder input, int startIndex)
+        {
+            Stack<bool> mystack = new Stack<bool>();
+            //left procesado -> f
+            //right procesado -> t
+            for (int i = startIndex; i < input.Length; i++)
+            {
+                //es un operador
+                if(input[i] <= 90 && !input[i].Equals('N'))
+                {
+                    mystack.Push(false);
+                }
+
+                if (input[i] > 90)
+                {
+                    if (mystack.Count == 0)
+                        return i-startIndex+1;
+
+                    //es una variable
+                    if (mystack.Peek() == false)
+                    {
+                        mystack.Pop();
+                        mystack.Push(true);
+                        continue;
+                    }
+                    
+                    while (mystack.Count > 0 && mystack.Peek() == true)
+                        mystack.Pop();
+
+                    if (mystack.Count == 0)
+                        return i-startIndex+1;
+                }
+            }
+
+            return input.Length - startIndex;
+
+        }
 
 
     }
