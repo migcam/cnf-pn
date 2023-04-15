@@ -34,6 +34,7 @@ namespace pkg
             return res;
         }
 
+        // TODO: remove ref
         public static string Cut(ref string input, int idx)
         {
             int length = GetSubTreeLength(input,idx);
