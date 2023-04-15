@@ -19,7 +19,7 @@ namespace benchmarks
         private void GenericStringBenchmark(string input) => input = CNF.ConvertFromString(input);
 
         private void GeneticSpanBenchmark(ReadOnlySpan<char> input){
-            var res =CNF.ConvertFromString(input);
+            var res =CNF.ConvertFromSpan(input);
         }
 
 
