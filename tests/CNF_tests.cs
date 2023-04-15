@@ -15,8 +15,8 @@ namespace tests
         public void ConvertStringBuilderTest() => GenericStringBuilderTest("IIpqDpNp", "CDpDpDNqDpNpNp");
         [Fact]
         public void ConvertStringTest() => GenericStringTest("IIpqDpNp", "CDpDpDNqDpNpNp");
-        // [Fact]
-        // public void ConvertSpanTest() => GenericSpanTest("IIpqDpNp", "CDpDpDNqDpNpNp");
+        [Fact]
+        public void ConvertSpanTest() => GenericSpanTest("IIpqDpNp", "CDpDpDNqDpNpNp");
 
 
         [Fact]
@@ -47,8 +47,8 @@ namespace tests
         public void ConvertStringBuilderTest4() => GenericStringBuilderTest("IIqrIIpqIpr","CDqCDDNrCDpDNDNqDNprprpDNDNqDNprpr");
         [Fact]
         public void ConvertStringTest4() => GenericStringTest("IIqrIIpqIpr","CDqCDDNrCDpDNDNqDNprprpDNDNqDNprpr");
-        // [Fact]
-        // public void ConvertSpanTest4() => GenericSpanTest("IIqrIIpqIpr","CDqCDDNrCDpDNDNqDNprprpDNDNqDNprpr");
+        [Fact]
+        public void ConvertSpanTest4() => GenericSpanTest("IIqrIIpqIpr","CDqCDDNrCDpDNDNqDNprprpDNDNqDNprpr");
 
 
         [Fact]

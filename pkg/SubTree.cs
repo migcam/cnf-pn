@@ -50,7 +50,7 @@ namespace pkg
             int length = GetSubTreeLength(input,idx);
             var res = input.Slice(idx,length);
 
-            input = string.Concat(res.Slice(0,idx),res.Slice(idx+length,res.Length-idx-length));
+            input = string.Concat(input.Slice(0,idx),input.Slice(idx+length,input.Length-idx-length));
 
             return res;
         }
