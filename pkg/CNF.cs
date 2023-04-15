@@ -14,7 +14,7 @@ namespace pkg
             return expression;
         }
 
-        public static ReadOnlySpan<char> ConvertFromString(ReadOnlySpan<char> expression)
+        public static ReadOnlySpan<char> ConvertFromSpan(ReadOnlySpan<char> expression)
         {
             expression = Biconditional.Delete_MaterialConditions(expression);
             expression = Implication.Delete_All_Implications(expression);
