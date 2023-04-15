@@ -368,12 +368,6 @@ namespace pkg
             return input;
         }
 
-        private static ReadOnlySpan<char> NewMethod(ReadOnlySpan<char> input, int i)
-        {
-            input = string.Concat(input.Slice(0, i), input.Slice(i + 1, input.Length - i + 1));
-            return input;
-        }
-
         private static string SetChar(string input, int i, char character)
         {
             string beforei = "";
@@ -415,6 +409,11 @@ namespace pkg
         }
 
         public static ReadOnlySpan<char> Insert(this ReadOnlySpan<char> input, int idx, string newStr)
+        {
+           return string.Concat(input.Slice(0,idx),newStr,input.Slice(idx,input.Length-idx));
+        }
+
+        public static ReadOnlySpan<char> Insert(this ReadOnlySpan<char> input, int idx, ReadOnlySpan<char> newStr)
         {
            return string.Concat(input.Slice(0,idx),newStr,input.Slice(idx,input.Length-idx));
         }
