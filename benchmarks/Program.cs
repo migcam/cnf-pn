@@ -8,7 +8,6 @@ namespace benchmarks
         static void Main(string[] args)
         {
             BenchmarkRunner.Run<SubTreeBenchmarks>();
-
         }
     }
 }

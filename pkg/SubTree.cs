@@ -10,7 +10,7 @@ namespace pkg
         public static StringBuilder Copy(StringBuilder input, int idx)
         {
             int length = GetSubTreeLength(input,idx);
-            return new StringBuilder(input.ToString(idx,length));
+            return new StringBuilder().Append(input,idx,length);
         }
 
         public static string Copy(string input, int idx)
@@ -18,15 +18,20 @@ namespace pkg
             int length = GetSubTreeLength(input,idx);
             return input.Substring(idx,length);
         }
+        public static ReadOnlySpan<char> Copy(ReadOnlySpan<char> input, int idx)
+        {
+            int length = GetSubTreeLength(input,idx);
+            return input.Slice(idx,length);
+        }
 
         public static StringBuilder Cut(StringBuilder input, int idx)
         {
             int length = GetSubTreeLength(input,idx);
-            string res = input.ToString(idx,length);
+            StringBuilder res = new StringBuilder().Append(input,idx,length);
 
             input = input.Remove(idx,length);
 
-            return new StringBuilder(res);
+            return res;
         }
 
         public static string Cut(ref string input, int idx)
@@ -35,6 +40,16 @@ namespace pkg
             string res = input.Substring(idx,length);
 
             input = input.Remove(idx,length);
+
+            return res;
+        }
+
+        public static ReadOnlySpan<char> Cut(ref ReadOnlySpan<char> input, int idx)
+        {
+            int length = GetSubTreeLength(input,idx);
+            var res = input.Slice(idx,length);
+
+            input = string.Concat(res.Slice(0,idx),res.Slice(idx+length,res.Length-idx-length));
 
             return res;
         }
@@ -113,6 +128,44 @@ namespace pkg
 
             return input.Length - startIndex;
         }
+
+        public static int GetSubTreeLength(ReadOnlySpan<char> input, int startIndex)
+        {
+            Stack<bool> mystack = new Stack<bool>();
+            //left procesado -> f
+            //right procesado -> t
+            for (int i = startIndex; i < input.Length; i++)
+            {
+                //es un operador
+                if(input[i] <= 90 && !input[i].Equals('N'))
+                {
+                    mystack.Push(false);
+                }
+
+                if (input[i] > 90)
+                {
+                    if (mystack.Count == 0)
+                        return i-startIndex+1;
+
+                    //es una variable
+                    if (mystack.Peek() == false)
+                    {
+                        mystack.Pop();
+                        mystack.Push(true);
+                        continue;
+                    }
+                    
+                    while (mystack.Count > 0 && mystack.Peek() == true)
+                        mystack.Pop();
+
+                    if (mystack.Count == 0)
+                        return i-startIndex+1;
+                }
+            }
+
+            return input.Length - startIndex;
+        }
+
 
         #region previso method
         // public static StringBuilder Cut(StringBuilder input, int idx)
