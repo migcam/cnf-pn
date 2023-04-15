@@ -157,6 +157,74 @@ namespace pkg
             return input;
         }
 
+        public static ReadOnlySpan<char> Distribution_ORs(ReadOnlySpan<char> input)
+        {
+            Stack<char> ops = new Stack<char>();
+            Stack<char> ds = new Stack<char>();
+            for (int i = input.Length - 1; i > -1; i--)
+            {
+                if (input[i].Equals('C'))
+                {
+                    ops.Push(input[i]);
+                    if(ds.Count > 1)
+                    {
+                        ops.Clear();
+                        ds.Clear();
+                    }
+                }
+
+                if (input[i].Equals('D')){
+                    ds.Push(input[i]);
+                }
+
+
+                if (input[i].Equals('D') && checkLast(ops))
+                {
+                    if(input[i + 1].Equals('C') && ops.Count == 1)
+                    {
+                        ReadOnlySpan<char> q = SubTree.Copy(input, i + 2);
+                        ReadOnlySpan<char> r = SubTree.Cut(ref input, i + 2 + q.Length);
+                        ReadOnlySpan<char> p = SubTree.Cut(ref input, i + 2 + q.Length);
+
+                        ReadOnlySpan<char> beforei = "";
+                        ReadOnlySpan<char> afteri = "";
+
+                        if(i>0)
+                            beforei = input.Slice(0,i);
+                        if(i<input.Length-2)
+                            afteri = input.Slice(i+2);
+                        
+                        input = string.Concat(beforei,"CD",afteri);       
+                        input = input.Insert(i + 2 + q.Length, p);
+                        input = input.Insert(i + 2 + q.Length + r.Length, string.Concat("D",r,p));
+                    }
+                    else /*if (!input[i + 1].Equals('C'))*/
+                    {
+                        ReadOnlySpan<char> q = SubTree.Cut(ref input, i + 1);
+                        ReadOnlySpan<char> r = SubTree.Cut(ref input, i + 2);
+                        ReadOnlySpan<char> p = SubTree.Cut(ref input, i + 2);
+
+                        ReadOnlySpan<char> beforei = "";
+                        ReadOnlySpan<char> afteri = "";
+
+                        if(i>0)
+                            beforei = input.Slice(0,i);
+                        if(i<input.Length-2)
+                            afteri = input.Slice(i+2);
+                        
+                        input = string.Concat(beforei,"CD",afteri);
+                        input = input.Insert(i + 2, string.Concat(q,p));
+                        input = input.Insert(i + 2 + q.Length + r.Length, string.Concat("D",q,p));
+                    }
+                    ops.Clear();
+                    i = input.Length;
+                }
+
+            }
+
+            return input;
+        }
+
 
     }
 }

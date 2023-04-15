@@ -45,6 +45,29 @@ namespace pkg
 
             return input;
         }
+
+        public static ReadOnlySpan<char> Delete_All_Implications(ReadOnlySpan<char> input)
+        {
+            ReadOnlySpan<char> beforei = "";
+            ReadOnlySpan<char> afteri = "";
+            for (int i = input.Length - 1; i > -1; i--)
+            {
+                if (input[i].Equals('I'))
+                {
+                    beforei = "";
+                    afteri = "";
+                    if (i > 0)
+                        beforei = input.Slice(0, i);
+                    if (i < input.Length - 1)
+                        afteri = input.Slice(i + 1);
+
+                    input = string.Concat(beforei,"D",afteri);
+                    input = input.Insert(i + 1, "N");
+                }
+            }
+
+            return input;
+        }
         
     }
 }

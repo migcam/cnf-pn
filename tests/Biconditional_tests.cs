@@ -23,17 +23,34 @@ namespace tests
             Assert.Equal(stroutput, input);
         }
 
+        private void GenericSpanTest(string strInput , string stroutput)
+        {
+            ReadOnlySpan<char> input = strInput;
+            input = Biconditional.Delete_MaterialConditions(input);
+            Assert.Equal(stroutput, input.ToString());
+        }
+
+
+        // StringBuiler tests
         [Fact]
-        public void Delete_MaterialConditions_Test1() => GenericStringBuilderTest("Epq", "CIpqIqp");
+        public void Delete_MaterialConditions_StringBuilder_Test1() => GenericStringBuilderTest("Epq", "CIpqIqp");
 
         [Fact]
-        public void Delete_MaterialConditions_Test2() => GenericStringBuilderTest("ECpqDab", "CICpqDabIDabCpq");
+        public void Delete_MaterialConditions_StringBuilder_Test2() => GenericStringBuilderTest("ECpqDab", "CICpqDabIDabCpq");
+
+        // String tests
+        [Fact]
+        public void Delete_MaterialConditions_String_Test3() => GenericStringTest("Epq", "CIpqIqp");
 
         [Fact]
-        public void Delete_MaterialConditions_Test3() => GenericStringTest("Epq", "CIpqIqp");
+        public void Delete_MaterialConditions_String_Test4() => GenericStringTest("ECpqDab", "CICpqDabIDabCpq");
+
+        // Span tests
+        [Fact]
+        public void Delete_MaterialConditions_Span_Test3() => GenericSpanTest("Epq", "CIpqIqp");
 
         [Fact]
-        public void Delete_MaterialConditions_Test4() => GenericStringTest("ECpqDab", "CICpqDabIDabCpq");
+        public void Delete_MaterialConditions_Span_Test4() => GenericStringTest("ECpqDab", "CICpqDabIDabCpq");
 
     }
 }

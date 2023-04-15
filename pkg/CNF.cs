@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 namespace pkg
@@ -12,6 +13,16 @@ namespace pkg
             expression = Distribution.Distribution_ORs(expression);
             return expression;
         }
+
+        public static ReadOnlySpan<char> ConvertFromString(ReadOnlySpan<char> expression)
+        {
+            expression = Biconditional.Delete_MaterialConditions(expression);
+            expression = Implication.Delete_All_Implications(expression);
+            expression = Negations.Delete_Negation(expression);
+            expression = Distribution.Distribution_ORs(expression);
+            return expression;
+        }
+
         public static void ConvertFromStringBuilder(StringBuilder expression)
         {
             Biconditional.Delete_MaterialConditions(expression);

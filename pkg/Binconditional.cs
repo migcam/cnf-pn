@@ -70,5 +70,41 @@ namespace pkg
 
         }
 
+        public static ReadOnlySpan<char> Delete_MaterialConditions(ReadOnlySpan<char> input)
+        {
+            ReadOnlySpan<char> LeftChild = "";
+            ReadOnlySpan<char> RightChild = "";
+            
+            ReadOnlySpan<char> beforei = "";
+            ReadOnlySpan<char> afteri = "";
+
+            for (int i = 0; i < input.Length-1; i++)
+            {
+                if (input[i] == 'E')
+                {
+                    LeftChild = SubTree.Copy(input,i+1);
+                    RightChild = SubTree.Copy(input, i + 1 + LeftChild.Length);
+
+                    // input[i] = 'C';
+                    beforei = "";
+                    afteri = "";
+
+                    if(i>0)
+                        beforei = input.Slice(0,i);
+                    if(i<input.Length-2){
+                        afteri = input.Slice(i+1);
+                    }
+
+                    input = string.Concat(beforei,"C",afteri);
+                    input = input.Insert(i + 1 + LeftChild.Length + RightChild.Length, string.Concat("I",RightChild,LeftChild));
+                    input = input.Insert(i + 1, "I");
+                }
+               
+            }
+
+            return input;
+
+        }
+
     }
 }

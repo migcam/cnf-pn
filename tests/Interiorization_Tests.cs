@@ -24,19 +24,40 @@ namespace tests
             Assert.Equal(stroutput, output);
         }
 
-        [Fact]
-        public void Distribution_ORs_test1() => GenericStringBuilderDistributionOR("DCqrp" , "CDqpDrp");
-        [Fact]
-        public void Distribution_ORs_test2() => GenericStringBuilderDistributionOR("DpCqr" , "CDpqDpr");
-        [Fact]
-        public void Distribution_ORs_test3() => GenericStringBuilderDistributionOR("DCabCqr" , "CCDaqDbqCDarDbr");
+        private void GenericSpanDistributionOR(string strInput , string stroutput)
+        {
+            ReadOnlySpan<char> input = strInput;
+            ReadOnlySpan<char> output = Distribution.Distribution_ORs(input);
+            Assert.Equal(stroutput, output.ToString());
+        }
 
+
+        // String builder tests
         [Fact]
-        public void Distribution_ORs_test4() => GenericStringDistributionOR("DCqrp", "CDqpDrp");
+        public void Distribution_StringBuilder1() => GenericStringBuilderDistributionOR("DCqrp" , "CDqpDrp");
         [Fact]
-        public void Distribution_ORs_test5() => GenericStringDistributionOR("DpCqr", "CDpqDpr");
+        public void Distribution_StringBuilder2() => GenericStringBuilderDistributionOR("DpCqr" , "CDpqDpr");
         [Fact]
-        public void Distribution_ORs_test6() => GenericStringDistributionOR("DCabCqr", "CCDaqDbqCDarDbr");
+        public void Distribution_StringBuilder3() => GenericStringBuilderDistributionOR("DCabCqr" , "CCDaqDbqCDarDbr");
+
+
+        //String tests
+        [Fact]
+        public void Distribution_String1() => GenericStringDistributionOR("DCqrp", "CDqpDrp");
+        [Fact]
+        public void Distribution_String2() => GenericStringDistributionOR("DpCqr", "CDpqDpr");
+        [Fact]
+        public void Distribution_String3() => GenericStringDistributionOR("DCabCqr", "CCDaqDbqCDarDbr");
+
+
+        //Span tests
+        [Fact]
+        public void Distribution_Span1() => GenericStringDistributionOR("DCqrp", "CDqpDrp");
+        [Fact]
+        public void Distribution_Span2() => GenericStringDistributionOR("DpCqr", "CDpqDpr");
+        [Fact]
+        public void Distribution_Span3() => GenericStringDistributionOR("DCabCqr", "CCDaqDbqCDarDbr");
+
 
     }
 }

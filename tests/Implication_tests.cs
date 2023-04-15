@@ -1,13 +1,14 @@
 ﻿using System.Text;
 using Xunit;
 using pkg;
+using System;
 
 namespace tests
 {
     public class Implication_tests
     {
         [Fact]
-        public void Delete_All_Implications_Test()
+        public void Delete_All_Implications_StringBuilder_Test()
         {
             StringBuilder input = new StringBuilder("IIqrIIpqIpr");
             Implication.Delete_All_Implications(input);          
@@ -15,11 +16,19 @@ namespace tests
         }
 
         [Fact]
-        public void Delete_All_Implications_Test1()
+        public void Delete_All_Implications_String_Test()
         {
             string input = "IIqrIIpqIpr";
             string output = Implication.Delete_All_Implications(input);
             Assert.Equal("DNDNqrDNDNpqDNpr", output);
+        }
+
+        [Fact]
+        public void Delete_All_Implications_Span_Test()
+        {
+            ReadOnlySpan<char> input = "IIqrIIpqIpr";
+            ReadOnlySpan<char> output = Implication.Delete_All_Implications(input);
+            Assert.Equal("DNDNqrDNDNpqDNpr", output.ToString());
         }
 
 
