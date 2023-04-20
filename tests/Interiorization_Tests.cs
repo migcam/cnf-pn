@@ -31,6 +31,15 @@ namespace tests
             Assert.Equal(stroutput, output.ToString());
         }
 
+        private void GenericExpressionTest(string strinput , string stroutput)
+        {
+            var input  = new CnfExpressionParser(strinput);
+            input.Interiorization();
+            var output  = new CnfExpressionParser(strinput);
+            Assert.Equal(output.ToString(),input.ToString());
+        }
+
+
 
         // String builder tests
         [Fact]
@@ -51,12 +60,21 @@ namespace tests
 
 
         //Span tests
+        // [Fact]
+        // public void Distribution_Span1() => GenericSpanDistributionOR("DCqrp", "CDqpDrp");
+        // [Fact]
+        // public void Distribution_Span2() => GenericSpanDistributionOR("DpCqr", "CDpqDpr");
+        // [Fact]
+        // public void Distribution_Span3() => GenericSpanDistributionOR("DCabCqr", "CCDaqDbqCDarDbr");
+        
+        
+        // // Expression tests
         [Fact]
-        public void Distribution_Span1() => GenericStringDistributionOR("DCqrp", "CDqpDrp");
+        public void Distribution_Expression1() => GenericExpressionTest("DCqrp", "CDqpDrp");
         [Fact]
-        public void Distribution_Span2() => GenericStringDistributionOR("DpCqr", "CDpqDpr");
+        public void Distribution_Expression2() => GenericExpressionTest("DpCqr", "CDpqDpr");
         [Fact]
-        public void Distribution_Span3() => GenericStringDistributionOR("DCabCqr", "CCDaqDbqCDarDbr");
+        public void Distribution_Expression3() => GenericExpressionTest("DCabCqr", "CCDaqDbqCDarDbr");
 
 
     }

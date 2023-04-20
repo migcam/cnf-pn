@@ -1,4 +1,5 @@
 using System;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace pkg
@@ -12,6 +13,11 @@ namespace pkg
             expression = Negations.Delete_Negation(expression);
             expression = Distribution.Distribution_ORs(expression);
             return expression;
+        }
+        
+        public static Expression ConvertFromExpression(string expression)
+        {
+            return new CnfExpressionParser(expression).ToCNF();
         }
 
         public static ReadOnlySpan<char> ConvertFromSpan(ReadOnlySpan<char> expression)

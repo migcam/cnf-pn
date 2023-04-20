@@ -31,6 +31,14 @@ namespace tests
             Assert.Equal("DNDNqrDNDNpqDNpr", output.ToString());
         }
 
+        [Fact]
+        public void Delete_All_Implications_Expression_Test()
+        {
+            CnfExpressionParser input = new CnfExpressionParser("IIqrIIpqIpr");
+            CnfExpressionParser output = new CnfExpressionParser("DNDNqrDNDNpqDNpr");
+            Assert.Equal(input.ToString(), output.ToString());
+        }
+
 
     }
 }

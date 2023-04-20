@@ -30,6 +30,13 @@ namespace tests
             Assert.Equal(stroutput, input.ToString());
         }
 
+        private void GenericExpressionTest(string strinput , string stroutput)
+        {
+            var input  = new CnfExpressionParser(strinput);
+            var output  = new CnfExpressionParser(strinput);
+            Assert.Equal(output.ToString(),input.ToString());
+        }
+
 
         // StringBuiler tests
         [Fact]
@@ -38,19 +45,29 @@ namespace tests
         [Fact]
         public void Delete_MaterialConditions_StringBuilder_Test2() => GenericStringBuilderTest("ECpqDab", "CICpqDabIDabCpq");
 
+
         // String tests
         [Fact]
-        public void Delete_MaterialConditions_String_Test3() => GenericStringTest("Epq", "CIpqIqp");
+        public void Delete_MaterialConditions_String_Test1() => GenericStringTest("Epq", "CIpqIqp");
 
         [Fact]
-        public void Delete_MaterialConditions_String_Test4() => GenericStringTest("ECpqDab", "CICpqDabIDabCpq");
+        public void Delete_MaterialConditions_String_Test2() => GenericStringTest("ECpqDab", "CICpqDabIDabCpq");
+
 
         // Span tests
         [Fact]
-        public void Delete_MaterialConditions_Span_Test3() => GenericSpanTest("Epq", "CIpqIqp");
+        public void Delete_MaterialConditions_Span_Test1() => GenericSpanTest("Epq", "CIpqIqp");
 
         [Fact]
-        public void Delete_MaterialConditions_Span_Test4() => GenericStringTest("ECpqDab", "CICpqDabIDabCpq");
+        public void Delete_MaterialConditions_Span_Test2() => GenericStringTest("ECpqDab", "CICpqDabIDabCpq");
+
+        
+        // Expressions tests
+        [Fact]
+        public void Delete_MaterialConditions_Expression_Test1() => GenericExpressionTest("Epq", "CIpqIqp");
+
+        [Fact]
+        public void Delete_MaterialConditions_Expression_Test2() => GenericExpressionTest("ECpqDab", "CICpqDabIDabCpq");
 
     }
 }
