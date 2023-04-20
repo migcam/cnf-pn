@@ -34,7 +34,7 @@ namespace benchmarks
         [Benchmark]
         public void ConvertSpan() => GeneticSpanBenchmark("IIpqDpNp");
         [Benchmark]
-        public void ConvertExpression() => GeneticExpressionBenchmark("IIpqDpNp");
+        public void ConvertExpression() => new CnfExpressionParser("IIpqDpNp");
 
 
         [Benchmark]
@@ -44,7 +44,7 @@ namespace benchmarks
         [Benchmark]
         public void ConvertSpan1() => GeneticSpanBenchmark("NCNpp");
         [Benchmark]
-        public void ConvertExpression1() => GeneticExpressionBenchmark("NCNpp");
+        public void ConvertExpression1() => new CnfExpressionParser("NCNpp");
 
 
         [Benchmark]
@@ -54,7 +54,7 @@ namespace benchmarks
         [Benchmark]
         public void ConvertSpan2() => GeneticSpanBenchmark("Iaz");
         [Benchmark]
-        public void ConvertExpression2() => GeneticExpressionBenchmark("Iaz");
+        public void ConvertExpression2() => new CnfExpressionParser("Iaz");
 
 
         [Benchmark]
@@ -64,7 +64,7 @@ namespace benchmarks
         [Benchmark]
         public void ConvertSpan3() => GeneticSpanBenchmark("NNNNNNNp");
         [Benchmark]
-        public void ConvertExpression3() => GeneticExpressionBenchmark("NNNNNNNp");
+        public void ConvertExpression3() => new CnfExpressionParser("NNNNNNNp");
 
 
         [Benchmark]
@@ -74,7 +74,7 @@ namespace benchmarks
         [Benchmark]
         public void ConvertSpan4() => GeneticSpanBenchmark("IIqrIIpqIpr");
         [Benchmark]
-        public void ConvertExpression4() => GeneticExpressionBenchmark("IIqrIIpqIpr");
+        public void ConvertExpression4() => new CnfExpressionParser("IIqrIIpqIpr");
 
 
         [Benchmark]
@@ -84,7 +84,7 @@ namespace benchmarks
         [Benchmark]
         public void ConvertSpan5() => GeneticSpanBenchmark("Ipp");
         [Benchmark]
-        public void ConvertExpression5() => GeneticExpressionBenchmark("Ipp");
+        public void ConvertExpression5() => new CnfExpressionParser("Ipp");
         
 
         [Benchmark]
@@ -94,7 +94,7 @@ namespace benchmarks
         [Benchmark]
         public void ConvertSpan6() => GeneticSpanBenchmark("Ezz");
         [Benchmark]
-        public void ConvertExpression6() => GeneticExpressionBenchmark("Ezz");
+        public void ConvertExpression6() => new CnfExpressionParser("Ezz");
 
     }
 }
