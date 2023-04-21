@@ -1,8 +1,64 @@
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
 public static class ExpressionExtensions
 {
+    public static Expression MoveNegationInward(Expression exp)
+    {
+        // exp = exp.ReduceNots();
+        return MoveNotInward(exp);
+    }
+
+    public static Expression MoveNotInward(Expression expression)
+    {
+
+        if (expression is UnaryExpression unaryExpression && unaryExpression.NodeType == ExpressionType.Not)
+        {
+            var operand = unaryExpression.Operand;
+
+            switch (operand)
+            {
+                case BinaryExpression binaryExpression when binaryExpression.NodeType == ExpressionType.And ||
+                 binaryExpression.NodeType == ExpressionType.AndAlso :
+                    var left = MoveNotInward(Expression.Not(binaryExpression.Left));
+                    var right = MoveNotInward(Expression.Not(binaryExpression.Right));
+                    return Expression.Or(left, right);
+
+                case BinaryExpression binaryExpression when binaryExpression.NodeType == ExpressionType.Or ||
+                    binaryExpression.NodeType == ExpressionType.OrElse :
+                    var left1 = MoveNotInward(Expression.Not(binaryExpression.Left));
+                    var right1 = MoveNotInward(Expression.Not(binaryExpression.Right));
+                    return Expression.And(left1, right1);
+
+                case UnaryExpression nestedUnaryExpression when nestedUnaryExpression.NodeType == ExpressionType.Not:
+                    return MoveNotInward(nestedUnaryExpression.Operand);
+
+                default:
+                    return expression;
+            }
+        }
+        else if (expression is BinaryExpression binaryExpression)
+        {
+            var left = MoveNotInward(binaryExpression.Left);
+            var right = MoveNotInward(binaryExpression.Right);
+            if (left != binaryExpression.Left || right != binaryExpression.Right)
+            {
+                switch (binaryExpression.NodeType)
+                {
+                    case ExpressionType.And:
+                        return Expression.And(left, right);
+                    case ExpressionType.Or:
+                        return Expression.Or(left, right);
+                    default:
+                        throw new NotSupportedException($"Unsupported binary operator {binaryExpression.NodeType}");
+                }
+            }
+        }
+        return expression;
+    }
+
+    
     public static Expression ReduceNots(this Expression expression)
     {
         if (expression.NodeType == ExpressionType.Not)

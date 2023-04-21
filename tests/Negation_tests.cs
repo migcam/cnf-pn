@@ -30,7 +30,7 @@ namespace tests
         private void GenericExpressionTest(string strinput , string stroutput)
         {
             CnfExpressionParser input = new CnfExpressionParser(strinput);
-            input.ReduceNots();
+            input.MoveNegationsInward();
             CnfExpressionParser output = new CnfExpressionParser(stroutput);
             Assert.Equal(output.ToString(), input.ToString());
         }
@@ -66,14 +66,14 @@ namespace tests
         public void Delete_Negation_Span_4() => GenericSpanTest("DNDNpqDpNp","DCpNqDpNp");
 
         // Expression tests 
-        // [Fact]
-        // public void Delete_Negation_Expression_1() => GenericExpressionTest("DNDNqrDNDNpqDNpr","DCqNrDCpNqDNpr");
-        // [Fact]
-        // public void Delete_Negation_Expression_2() => GenericExpressionTest("NCNpp","DpNp");
+        [Fact]
+        public void Delete_Negation_Expression_1() => GenericExpressionTest("DNDNqrDNDNpqDNpr","DCqNrDCpNqDNpr");
+        [Fact]
+        public void Delete_Negation_Expression_2() => GenericExpressionTest("NCNpp","DpNp");
         [Fact]
         public void Delete_Negation_Expression_3() => GenericExpressionTest("NNNNNNNp","Np");
-        // [Fact]
-        // public void Delete_Negation_Expression_4() => GenericExpressionTest("DNDNpqDpNp","DCpNqDpNp");
+        [Fact]
+        public void Delete_Negation_Expression_4() => GenericExpressionTest("DNDNpqDpNp","DCpNqDpNp");
 
     }
 }
