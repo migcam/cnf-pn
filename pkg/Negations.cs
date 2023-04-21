@@ -8,7 +8,8 @@ namespace pkg
 {
     public class Negations
     {
-
+        // !p or q === !p and !q; 
+        // !p and q === !p or !q
         public static void Delete_Negation(StringBuilder input)
         {
             // deletes double negations (!!)
