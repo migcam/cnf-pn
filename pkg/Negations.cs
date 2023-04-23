@@ -20,111 +20,31 @@ namespace pkg
                 else
                     i++;
             }
-
-            Stack<int> mystack = new Stack<int>();
             
-            /*
-            0 = ambos procesados no cambios necesarios
-            1 = ambos procesado cambios necesarios
-            2 = hijo izquierdo procesado no cambios necesarios
-            3 = hijo izquierdo procesado cambios necesarios
-            */
-
-            mystack.Push(0);
-
-            for (int i = 1; i < input.Length ; i++)
+            int pLength;
+            for (int i = 0; i < input.Length; i++)
             {
-                //if (input[i].Equals('N'))
-                //    continue;
 
-                if (mystack.Peek() == 0 || mystack.Peek() == 2)
+                if(input[i].Equals('C') && i>0 && input[i-1].Equals('N'))
                 {
-                    if(input[i - 1].Equals('N'))
-                    {
-                        if(input[i].Equals('D'))
-                        {
-                            input[i] = 'C';
-                            input.Remove(--i, 1);
-                            mystack.Push(3);
-                        }
-                        else if(input[i].Equals('C'))
-                        {
-                            input[i] = 'D';
-                            input.Remove(--i, 1);
-                            mystack.Push(3);
-                        }
-                        else
-                        {
-                            if (mystack.Peek().Equals(2))
-                            {
-                                mystack.Pop();
-                                mystack.Push(0);
-                            }
-                            else
-                            {
-                                while (mystack.Count > 0 && (mystack.Peek().Equals(0) || mystack.Peek().Equals(1)))
-                                    mystack.Pop();
-                                
-                            }
-                        }
-                    }
-                    else
-                    {
-                        mystack.Push(2);
-                    }
-
+                    input[i-1] = 'D';
+                    input[i]='N';
+                    pLength = SubTree.GetSubTreeLength(input,i+1);
+                    input.Insert(i+1+pLength,'N');
                 }
-                else
+                else if(input[i].Equals('D') && i>0 && input[i-1].Equals('N'))
                 {
-                    if (input[i - 1].Equals('N'))
-                    {
-                        input.Remove(--i, 1);
-
-                        if(input[i].Equals('C') || input[i].Equals('D'))
-                            mystack.Push(2);
-                        else
-                        {
-                            mystack.Pop();
-                            mystack.Push(1);
-                        }
-                    }
-                    else
-                    {
-                        if (input[i].Equals('N'))
-                            continue;
-                        
-                        if (input[i].Equals('C'))
-                        {
-                            input[i] = 'D';
-                            mystack.Push(3);
-                        }
-                        else if (input[i].Equals('D'))
-                        {
-                            input[i] = 'C';
-                            mystack.Push(3);
-                        }
-                        else
-                        {
-                            input.Insert(i++, 'N');
-
-                            if (mystack.Peek().Equals(3))
-                            {
-                                mystack.Pop();
-                                mystack.Push(1);
-                            }
-                            else
-                            {
-                                while (mystack.Count > 0 && (mystack.Peek().Equals(0) || mystack.Peek().Equals(1))) 
-                                    mystack.Pop();
-                                
-                            }
-                        }
-                        
-                    }
+                    input[i-1] = 'C';
+                    input[i]='N';
+                    pLength = SubTree.GetSubTreeLength(input,i+1);
+                    input.Insert(i+1+pLength,'N');
                 }
+                else if(input[i].Equals('N') && i>0 && input[i-1].Equals('N'))
+                {
+                    input.Remove(i-1,2);
+                }
+
             }
-
-            // return input;
         }
 
         public static string Delete_Negation(string input)

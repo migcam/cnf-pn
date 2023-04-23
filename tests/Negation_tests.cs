@@ -23,7 +23,7 @@ namespace tests
 
         private void GenericSpanTest(string strinput , string stroutput)
         {
-            ReadOnlySpan<char> output = Negations.Delete_Negation(strinput.AsSpan());
+            ReadOnlySpan<char> output = Negations.Delete_Negation(strinput);
             Assert.Equal(stroutput, output.ToString());
         }
 
@@ -44,7 +44,7 @@ namespace tests
         public void Delete_Negation_StringBuilder_3() => GenericStringBuilderTest("NNNNNNNp","Np");
         [Fact]
         public void Delete_Negation_StringBuilder_4() => GenericStringBuilderTest("DNDNpqDpNp","DCpNqDpNp");
-
+        
         // String tests
         [Fact]
         public void Delete_Negation_String_1() => GenericStringTest("DNDNqrDNDNpqDNpr","DCqNrDCpNqDNpr");

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-// using System.Linq;
+using System.Linq;
 using System.Text;
 
 namespace pkg
@@ -201,6 +201,62 @@ namespace pkg
                     i = input.Length;
                 }
 
+            }
+
+            return input;
+        }
+        
+        public static ReadOnlySpan<char> Distribution_ORs2(ReadOnlySpan<char> input)
+        {
+            ReadOnlySpan<char> left;
+            ReadOnlySpan<char> right;
+            ReadOnlySpan<char> p;
+            ReadOnlySpan<char> q;
+            ReadOnlySpan<char> r;
+            ReadOnlySpan<char> s;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if(input[i].Equals('D')){
+                    // get left subtree and right subtrees roots
+                    left = SubTree.Copy(input,i+1);
+                    right = SubTree.Copy(input,i + left.Length + 1);
+
+                    // Look for Ands in subtrees roots
+
+                    //if left node has and and rght does not
+                    if(left[0].Equals('C') && !right[0].Equals('C')){
+                        q = SubTree.Copy(left,1);
+                        r = SubTree.Copy(left,q.Length + 1);
+
+                        input = string.Concat(string.Concat(input.Slice(0,i), "CD", q, right), "D",r,right);
+                        continue;
+                    }
+                    //if right node has and and left does not
+                    if(!left[0].Equals('C') && right[0].Equals('C')){
+                        q = SubTree.Copy(right,1);
+                        r = SubTree.Copy(right,q.Length + 1);
+
+                        input = string.Concat(string.Concat(input.Slice(0,i), "CD", left, q), "D",left, r);
+                        continue;
+                    }
+
+                    // when both children nodes are ands
+                    if(left[0].Equals('C') && right[0].Equals('C')){
+                        p = SubTree.Copy(left,1);
+                        q = SubTree.Copy(left,p.Length + 1);
+
+                        r = SubTree.Copy(right,1);
+                        s = SubTree.Copy(right,r.Length + 1);
+
+                        input = string.Concat(string.Concat(input.Slice(0,i), "CCD", p, r),
+                                                        string.Concat("D",q,r),
+                                                        string.Concat("CD",p,s),
+                                                        string.Concat("D",q,s));
+
+                    }
+
+                }
             }
 
             return input;

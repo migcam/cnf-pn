@@ -27,7 +27,7 @@ namespace pkg
         {
             for (int i = 0; i < input.Length; i++)
                 if (input[i].Equals('I'))
-                    input = input.Substring(0, i) + "DN" + input.Substring(i + 1);
+                    input = input.Substring(0, i) + "DN" + input.Substring(++i);
             return input;
         }
 
@@ -35,7 +35,7 @@ namespace pkg
         {
             for (int i = 0; i < input.Length; i++)
                 if (input[i].Equals('I'))
-                    input = string.Concat(input.Slice(0, i),"DN",input.Slice(i + 1));
+                    input = string.Concat(input.Slice(0, i),"DN",input.Slice(++i));
             return input;
         }
         
