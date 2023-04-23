@@ -53,6 +53,9 @@ namespace tests
         [Fact]
         public void Delete_MaterialConditions_String_Test2() => GenericStringTest("ECpqDab", "CICpqDabIDabCpq");
 
+         [Fact]
+        public void Delete_MaterialConditions_String_Test3() => GenericStringTest("EpqEpq", "CIpqIqpCIpqIqp");
+
 
         // Span tests
         [Fact]

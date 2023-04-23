@@ -49,19 +49,11 @@ namespace pkg
                     LeftChild = SubTree.Copy(input,i+1);
                     RightChild = SubTree.Copy(input, i + 1 + LeftChild.Length);
 
-                    // input[i] = 'C';
-                    beforei = "";
-                    afteri = "";
+                    beforei = input.Substring(0,i);
+                    afteri = input.Substring(i+LeftChild.Length+RightChild.Length+1);
 
-                    if(i>0)
-                        beforei = input.Substring(0,i);
-                    if(i<input.Length-2){
-                        afteri = input.Substring(i+1);
-                    }
+                    input =  string.Concat(beforei, "CI", LeftChild,RightChild, "I", RightChild, LeftChild, afteri);
 
-                    input =  beforei + 'C' + afteri;
-                    input = input.Insert(i + 1 + LeftChild.Length + RightChild.Length, "I" + RightChild + LeftChild);
-                    input = input.Insert(i + 1, "I");
                 }
                
             }
@@ -85,19 +77,10 @@ namespace pkg
                     LeftChild = SubTree.Copy(input,i+1);
                     RightChild = SubTree.Copy(input, i + 1 + LeftChild.Length);
 
-                    // input[i] = 'C';
-                    beforei = "";
-                    afteri = "";
+                    beforei = input.Slice(0,i);
+                    afteri = input.Slice(i+LeftChild.Length+RightChild.Length+1);
 
-                    if(i>0)
-                        beforei = input.Slice(0,i);
-                    if(i<input.Length-2){
-                        afteri = input.Slice(i+1);
-                    }
-
-                    input = string.Concat(beforei,"C",afteri);
-                    input = input.Insert(i + 1 + LeftChild.Length + RightChild.Length, string.Concat("I",RightChild,LeftChild));
-                    input = input.Insert(i + 1, "I");
+                    input =  string.Concat(string.Concat(beforei, "CI", LeftChild,RightChild), string.Concat("I", RightChild, LeftChild, afteri));
                 }
                
             }
