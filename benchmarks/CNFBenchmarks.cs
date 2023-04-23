@@ -70,9 +70,7 @@ namespace benchmarks
         [Benchmark]
         public void ConvertStringBuilder4() => GenericStringBuilderBenchmark(new StringBuilder("IIqrIIpqIpr"));
         [Benchmark]
-        public void ConvertString4() => GenericStringBenchmark("IIqrIIpqIpr");
-        [Benchmark]
-        public void ConvertSpan4() => GeneticSpanBenchmark("IIqrIIpqIpr");
+        public void ConvertStringBuilder4_1() => GenericStringBuilderBenchmark(new StringBuilder("IIqrIIpqIpr",512));
         [Benchmark]
         public void ConvertExpression4() => new CnfExpressionParser("IIqrIIpqIpr");
 
