@@ -82,8 +82,8 @@ public class CnfExpressionParser
         return stack.Pop();
     }
 
-    public void ReduceNots(){
-        _expression = _expression.ReduceNots();
+    public void MoveNegationsInward(){
+        _expression = ExpressionExtensions.MoveNegationInward(_expression);
     }
 
     public void Interiorization(){
@@ -91,8 +91,8 @@ public class CnfExpressionParser
     }
 
     public Expression ToCNF(){
-        _expression.ReduceNots();
-        _expression.Interiorization();
+        this.MoveNegationsInward();
+        this.Interiorization();
         return _expression;
     }
 
@@ -105,21 +105,21 @@ public class CnfExpressionParser
     // }
 }
 
-public class ExpressionTreeModifier : ExpressionVisitor
-{
-    private readonly Dictionary<string, bool> _values;
+// public class ExpressionTreeModifier : ExpressionVisitor
+// {
+//     private readonly Dictionary<string, bool> _values;
 
-    public ExpressionTreeModifier(Dictionary<string, bool> values)
-    {
-        _values = values;
-    }
+//     public ExpressionTreeModifier(Dictionary<string, bool> values)
+//     {
+//         _values = values;
+//     }
 
-    protected override Expression VisitParameter(ParameterExpression node)
-    {
-        if (_values.TryGetValue(node.Name, out bool value))
-        {
-            return Expression.Constant(value, typeof(bool));
-        }
-        return base.VisitParameter(node);
-    }
-}
+//     protected override Expression VisitParameter(ParameterExpression node)
+//     {
+//         if (_values.TryGetValue(node.Name, out bool value))
+//         {
+//             return Expression.Constant(value, typeof(bool));
+//         }
+//         return base.VisitParameter(node);
+//     }
+// }
