@@ -13,59 +13,29 @@ namespace pkg
         // p->q == -pvq
         public static void Delete_All_Implications(StringBuilder input)
         {
-            for (int i = input.Length - 2; i > -1; i--)
+            for (int i = 0; i < input.Length; i++)
             {
-                if (input[i].Equals('I'))
+                if (input[i] == 'I')
                 {
                     input[i] = 'D';
-                    input.Insert(i + 1, 'N');
+                    input.Insert(i+1, 'N');
                 }
             }
         }
 
         public static string Delete_All_Implications(string input)
         {
-            string beforei = "";
-            string afteri = "";
-            for (int i = input.Length - 1; i > -1; i--)
-            {
+            for (int i = 0; i < input.Length; i++)
                 if (input[i].Equals('I'))
-                {
-                    beforei = "";
-                    afteri = "";
-                    if (i > 0)
-                        beforei = input.Substring(0, i);
-                    if (i < input.Length - 1)
-                        afteri = input.Substring(i + 1);
-
-                    input = beforei + 'D' + afteri;
-                    input = input.Insert(i + 1, "N");
-                }
-            }
-
+                    input = input.Substring(0, i) + "DN" + input.Substring(i + 1);
             return input;
         }
 
         public static ReadOnlySpan<char> Delete_All_Implications(ReadOnlySpan<char> input)
         {
-            ReadOnlySpan<char> beforei = "";
-            ReadOnlySpan<char> afteri = "";
-            for (int i = input.Length - 1; i > -1; i--)
-            {
+            for (int i = 0; i < input.Length; i++)
                 if (input[i].Equals('I'))
-                {
-                    beforei = "";
-                    afteri = "";
-                    if (i > 0)
-                        beforei = input.Slice(0, i);
-                    if (i < input.Length - 1)
-                        afteri = input.Slice(i + 1);
-
-                    input = string.Concat(beforei,"D",afteri);
-                    input = input.Insert(i + 1, "N");
-                }
-            }
-
+                    input = string.Concat(input.Slice(0, i),"DN",input.Slice(i + 1));
             return input;
         }
         
