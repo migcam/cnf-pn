@@ -91,67 +91,48 @@ namespace pkg
 
         public static string Distribution_ORs(string input)
         {
-            Stack<char> ops = new Stack<char>();
-            Stack<char> ds = new Stack<char>();
-            for (int i = input.Length - 1; i > -1; i--)
+            for (int i = 0; i < input.Length; i++)
             {
-                if (input[i].Equals('C'))
-                {
-                    ops.Push(input[i]);
-                    if(ds.Count > 1)
-                    {
-                        ops.Clear();
-                        ds.Clear();
+                if(input[i].Equals('D')){
+                    // get left subtree and right subtrees roots
+                    string left  = SubTree.Copy(input,i+1);
+                    string right = SubTree.Copy(input,i + left.Length + 1);
+
+                    // Look for Ands in subtrees roots
+
+                    //if left node has and and rght does not
+                    if(left[0].Equals('C') && !right[0].Equals('C')){
+                        string q = SubTree.Copy(left,1);
+                        string r = SubTree.Copy(left,q.Length + 1);
+
+                        input = input.Substring(0,i) + "CD" + q + right + "D" + r + right;
+                        continue;
                     }
-                }
+                    //if right node has and and left does not
+                    if(!left[0].Equals('C') && right[0].Equals('C')){
+                        string q = SubTree.Copy(right,1);
+                        string r = SubTree.Copy(right,q.Length + 1);
 
-                if (input[i].Equals('D')){
-                    ds.Push(input[i]);
-                }
-
-
-                if (input[i].Equals('D') && checkLast(ops))
-                {
-                    if(input[i + 1].Equals('C') && ops.Count == 1)
-                    {
-                        string q = SubTree.Copy(input, i + 2);
-                        string r = SubTree.Cut(ref input, i + 2 + q.Length);
-                        string p = SubTree.Cut(ref input, i + 2 + q.Length);
-
-                        string beforei = "";
-                        string afteri = "";
-
-                        if(i>0)
-                            beforei = input.Substring(0,i);
-                        if(i<input.Length-2)
-                            afteri = input.Substring(i+2);
-                        
-                        input = beforei + "CD" + afteri;        
-                        input = input.Insert(i + 2 + q.Length, p);
-                        input = input.Insert(i + 2 + q.Length + r.Length, "D" + r + p);
+                        input = input.Substring(0,i) + "CD" + left + q + "D" +left + r;
+                        continue;
                     }
-                    else /*if (!input[i + 1].Equals('C'))*/
-                    {
-                        string q = SubTree.Cut(ref input, i + 1);
-                        string r = SubTree.Cut(ref input, i + 2);
-                        string p = SubTree.Cut(ref input, i + 2);
 
-                        string beforei = "";
-                        string afteri = "";
+                    // when both children nodes are ands
+                    if(left[0].Equals('C') && right[0].Equals('C')){
+                        string p = SubTree.Copy(left,1);
+                        string q = SubTree.Copy(left,p.Length + 1);
 
-                        if(i>0)
-                            beforei = input.Substring(0,i);
-                        if(i<input.Length-2)
-                            afteri = input.Substring(i+2);
-                        
-                        input = beforei + "CD" + afteri; 
-                        input = input.Insert(i + 2, q + r);
-                        input = input.Insert(i + 2 + q.Length + r.Length, "D" + q + p);
+                        string r = SubTree.Copy(right,1);
+                        string s = SubTree.Copy(right,r.Length + 1);
+
+                        input = input.Substring(0,i) + "CCD" + p + r + 
+                                                        "D" + q + r +
+                                                        "CD" + p + s +
+                                                        "D" + q + s;
+
                     }
-                    ops.Clear();
-                    i = input.Length;
-                }
 
+                }
             }
 
             return input;

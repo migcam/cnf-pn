@@ -48,16 +48,13 @@ namespace tests
         public void Distribution_StringBuilder2() => GenericStringBuilderDistributionOR("DpCqr" , "CDpqDpr");
         [Fact]
         public void Distribution_StringBuilder3() => GenericStringBuilderDistributionOR("DCabCqr" , "CCDaqDbqCDarDbr");
-
-
         //String tests
         [Fact]
         public void Distribution_String1() => GenericStringDistributionOR("DCqrp", "CDqpDrp");
         [Fact]
         public void Distribution_String2() => GenericStringDistributionOR("DpCqr", "CDpqDpr");
         [Fact]
-        public void Distribution_String3() => GenericStringDistributionOR("DCabCqr", "CCDaqDbqCDarDbr");
-
+        public void Distribution_String3() => GenericStringDistributionOR("DCpqCrs", "CCDprDqrCDpsDqs");
 
         //Span tests
         // [Fact]
