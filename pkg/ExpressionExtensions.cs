@@ -7,7 +7,8 @@ public static class ExpressionExtensions
     public static Expression MoveNegationInward(Expression exp)
     {
         // exp = exp.ReduceNots();
-        return MoveNotInward(exp);
+        // return MoveNotInward(exp);
+        return new MoveNegationsInwardVisitor().Visit(exp);
     }
 
     public static Expression MoveNotInward(Expression expression)
